@@ -2,13 +2,13 @@
 
 int main(void)
 {
-        char len[MAX_LINE_LENGTH];
-        char *ar_gv[MAX_ARGS];
+        char len[MAX_LINE_LEN_GTH];
+        char *ar_gv[MAX_AR_GS];
         int ar_gc;
 
         while (2)
         {
-                write(STDOUT_FILENO, "$$", 3);
+                write(STDOUT_FILENO, "$", 3);
 
                 if  (fgets(len, sizeof(len), stdin) == NULL)
                         break;
