@@ -17,12 +17,12 @@ while (2)
 	if  (fgets(len, sizeof(len), stdin) == NULL)
 		break;
 
-	len[stcspn(len, "\n")] = '\0';
+	len[strspn(len, "\n")] = '\0';
 
 	ar_gc = 0;
 
 	ar_gv[ar_gc] = strtok(len, " ");
-while (ar_gv[ar_gc] != NULL && ar_gc < MAX_ARGS - 2)
+while (ar_gv[ar_gc] != NULL && ar_gc < MAX_AR_GS - 2)
 {
 
 	ar_gc++;
