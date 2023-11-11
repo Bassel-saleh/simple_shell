@@ -12,12 +12,14 @@
 #include <dirent.h>
 
 extern char **environ;
+extern int _argc;
+extern char **_argv;
 
 #define MAX_COMMAND_LENGTH 128
-#define buffsize 1024
-#define flush -1
-
-int main(int argc, char *argv[]);
+#define BUFFER 1024
+#define FLUSH -1
+#define MAX_AR_GS 120
+int main(void);
 char *_strncpy(char *dest, char *src, int n);
 char *_strncat(char *dest, char *src, int n);
 char *_strchr(char *s, char c);

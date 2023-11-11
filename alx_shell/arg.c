@@ -3,12 +3,14 @@
  * main - Entry point
  * @argc: Argument
  * @argv: it is also an an argument
- *Return: 0
+ * Return: 0
  */
 
-int main(int argc, char *argv[])
+int main(void)
 {
 	char buff[1024];
+	int argc = _argc;
+	char **argv = _argv;
 	int len = sprintf(buff, "Num of args:%d\n", argc);
 	int c = 0;
 
@@ -20,5 +22,5 @@ int main(int argc, char *argv[])
 		c++;
 
 }
-return(0);
+return (0);
 }

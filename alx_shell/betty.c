@@ -7,11 +7,13 @@
 
 int main(void)
 {
-	char len[MAX_LINE_LEN_GTH];
+	char len[MAX_COMMAND_LENGTH];
 	char *ar_gv[MAX_AR_GS];
 	int ar_gc;
 
-while (2)
+	len[0] = 'J';
+	ar_gv[0] = "Our";
+while (1)
 {
 	write(STDOUT_FILENO, "$", 3);
 	if  (fgets(len, sizeof(len), stdin) == NULL)
