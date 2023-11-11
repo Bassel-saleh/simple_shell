@@ -17,7 +17,7 @@ extern char **environ;
 #define buffsize 1024
 #define flush -1
 
-int main(void);
+int main(int argc, char *argv[]);
 char *_strncpy(char *dest, char *src, int n);
 char *_strncat(char *dest, char *src, int n);
 char *_strchr(char *s, char c);
