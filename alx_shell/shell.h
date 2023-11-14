@@ -12,8 +12,6 @@
 #include <dirent.h>
 
 extern char **environ;
-extern int _argc;
-extern char **_argv;
 
 #define MAX_COMMAND_LENGTH 128
 #define BUFFER 1024
@@ -33,6 +31,5 @@ char *_strdup(char *str);
 void handle_exit(void);
 void handle_env(void);
 void execute_command(char *command);
-int main(void);
-
+void _executeCommand(char *command, char *args[], char *envp[]);
 #endif

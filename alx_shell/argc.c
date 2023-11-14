@@ -16,7 +16,7 @@ void _executeCommand(char *command, char *args[], char *envp[])
 		perror("fork");
 		return (1);
 		}
-		else if(pid == 0)
+		else if(_pid == 0)
 		{
 		execve(command, args, envp);
 		perror("execve");
@@ -29,13 +29,10 @@ void _executeCommand(char *command, char *args[], char *envp[])
 
 		int main()
 		{
-		char *command = comma;
-		char *args[] = _args;
-		char *envp[] = _envp;
-
-		comma = "/bin/ls";
-	       _args = {comma, "-l", NULL};
-       _envp = {NULL};
+		char command = "/ls"
+		char args[2] = "-1";
+		char envp[] = NULL;
+		write(STDOUT_FILENO, args, envp); 
 
 return (0);
 		}
