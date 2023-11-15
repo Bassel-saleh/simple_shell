@@ -12,6 +12,11 @@
 #include <dirent.h>
 
 extern char **environ;
+typedef struct myBuilt
+{
+const char *na_me;
+builtin_function fun;
+} myBuilt;
 
 #define MAX_COMMAND_LENGTH 128
 #define BUFFER 1024
@@ -31,5 +36,7 @@ char *_strdup(char *str);
 void handle_exit(void);
 void handle_env(void);
 void execute_command(char *command);
-void _executeCommand(char *command, char *args[], char *envp[]);
+void environment(char **args);
+void exitshell(char **args);
+builtin_function check_buid(char **args);
 #endif
