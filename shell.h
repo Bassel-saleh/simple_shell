@@ -14,9 +14,9 @@
 extern char **environ;
 
 #define MAX_COMMAND_LENGTH 128
-#define buffsize 1024
-#define flush -1
-
+#define BUFFER 1024
+#define FLUSH -1
+#define MAX_AR_GS 120
 int main(void);
 char *_strncpy(char *dest, char *src, int n);
 char *_strncat(char *dest, char *src, int n);
@@ -31,6 +31,5 @@ char *_strdup(char *str);
 void handle_exit(void);
 void handle_env(void);
 void execute_command(char *command);
-int main(void);
-
+void _executeCommand(char *command, char *args[], char *envp[]);
 #endif
