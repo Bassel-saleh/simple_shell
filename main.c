@@ -30,7 +30,7 @@ void handle_env(void)
  */
 void execute_command(char *command)
 {
-	char *path = "/bin/ls", *full_path, *args[2];
+	char *path = "/bin", *full_path, *args[2];
 	size_t full_path_size;
 	int status;
 
@@ -45,6 +45,7 @@ void execute_command(char *command)
 	else
 	{
 		pid_t pid = fork();
+
 		if (pid < 0)
 		{
 			_puts("Fork error\n");
