@@ -12,6 +12,12 @@
 #include <dirent.h>
 
 extern char **environ;
+typedef void (*builtin_function)(char **);
+/**
+ * struct myBuilt - Structure
+ * @na_me: Pointer
+ * @fun: Pointer
+ */
 typedef struct myBuilt
 {
 const char *na_me;

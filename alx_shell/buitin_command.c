@@ -1,8 +1,8 @@
 #include "shell.h"
 
 const myBuilt builtins[] = {
-	{"exit", exit_shell},
-	{"env", environ_ment},
+	{"exit", exitshell},
+	{"env", environment},
 	{NULL, NULL}
 };
 /**
@@ -13,9 +13,9 @@ const myBuilt builtins[] = {
 builtin_function check_buid(char **args)
 {
 	int c;
-	for (c = 0: builtins[c].na_me != NULL; c++)
+	for (c = 0; builtins[c].na_me != NULL; c++)
 	{
-		if(strcmp(args[0], buitins[c].na_me) == 0)
+		if(strcmp(args[0], builtins[c].na_me) == 0)
 		{
 			return builtins[c].fun;
 		}
@@ -28,12 +28,12 @@ builtin_function check_buid(char **args)
  */
 void exitshell(char **args)
 {
-	int sta_tus;
+	char stat;
 
-	if (args[2] != NULL)
+	if (args[0] != NULL)
 	{
-		sta_tus = atio(args[2]);
-		exit(sta_stus);
+		stat = atoi(args[0]);
+		exit(stat);
 	}
 	exit(0);
 }
