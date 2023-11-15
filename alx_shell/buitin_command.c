@@ -30,9 +30,9 @@ void exitshell(char **args)
 {
 	char stat;
 
-	if (args[0] != NULL)
+	if (args[1] != NULL)
 	{
-		stat = atoi(args[0]);
+		stat = atoi(args[1]);
 		exit(stat);
 	}
 	exit(0);
