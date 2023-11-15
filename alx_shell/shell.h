@@ -45,4 +45,6 @@ void execute_command(char *command);
 void environment(char **args);
 void exitshell(char **args);
 builtin_function check_buid(char **args);
+int _atoi(const char *str);
+
 #endif

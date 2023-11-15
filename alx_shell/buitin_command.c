@@ -13,14 +13,17 @@ const myBuilt builtins[] = {
 builtin_function check_buid(char **args)
 {
 	int c;
+	const char *l;
+
 	for (c = 0; builtins[c].na_me != NULL; c++)
 	{
-		if(strcmp(args[0], builtins[c].na_me) == 0)
+		l = builtins[c].na_me;
+		if (_strcmp(args[0], (char *)l) == 0)
 		{
-			return builtins[c].fun;
+			return (builtins[c].fun);
 		}
 	}
-	return(NULL);
+	return (NULL);
 }
 /**
  * exitshell - buitin exit command to be implemented
@@ -41,7 +44,7 @@ void exitshell(char **args)
  * environment - builtin env command to be implemented
  * @args: Array
  */
- void environment(char **args)
+void environment(char **args)
 {
 	char **env;
 	size_t numlen;
