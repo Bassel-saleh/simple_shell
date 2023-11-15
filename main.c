@@ -61,8 +61,9 @@ void execute_command(char *command)
 			args[1] = NULL;
 			execve(full_path, args, NULL);
 			free(full_path);
-			_puts(command);
-			_puts(": command not found\n");
+			/*_puts(command);*/
+			/*_puts(": command not found\n");*/
+			_puts("./shell: No such file or directory\n");
 			exit(EXIT_FAILURE);
 		}
 		else
