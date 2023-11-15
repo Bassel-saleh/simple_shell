@@ -45,6 +45,7 @@ void execute_command(char *command)
 	else
 	{
 		pid_t pid = fork();
+
 		if (pid < 0)
 		{
 			_puts("Fork error\n");
