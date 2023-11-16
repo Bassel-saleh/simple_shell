@@ -82,7 +82,8 @@ int main(void)
 
 	while (1)
 	{
-		_puts("$ ");
+		if (isatty(STDIN_FILENO))
+			_puts("$ ");
 		bytesRead = read(STDIN_FILENO, command, sizeof(command));
 		if (bytesRead <= 0)
 		{
