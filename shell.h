@@ -28,6 +28,7 @@ builtin_function fun;
 #define BUFFER 1024
 #define FLUSH -1
 #define MAX_AR_GS 120
+#define MAX_COMMANDS 10
 int main(void);
 char *_strncpy(char *dest, char *src, int n);
 char *_strncat(char *dest, char *src, int n);
@@ -46,5 +47,6 @@ void environment(char **args);
 void exitshell(char **args);
 builtin_function check_buid(char **args);
 int _atoi(const char *str);
+void execute_external_command(char *command);
 
 #endif

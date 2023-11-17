@@ -25,56 +25,49 @@ void handle_env(void)
 }
 
 /**
- * execute_external_command - Execute an external command
- * @command: The command to execute
- */
-void execute_external_command(char *command)
-{
-	char *args[2];
-	int status;
-	pid_t pid = fork();
-
-	args[0] = command;
-	args[1] = NULL;
-	if (pid < 0)
-		_puts("Fork error\n");
-	else if (pid == 0)
-	{
-		execve(command, args, NULL);
-		perror(command);
-		exit(EXIT_FAILURE);
-	}
-	else
-		waitpid(pid, &status, 0);
-}
-
-/**
  * execute_command - Execute a given command
  * @command: The command to execute
  */
 void execute_command(char *command)
 {
-	char *path = "/bin", *full_path;
+	char *path = "/bin", *full_path, *args[2];
 	size_t full_path_size;
-	pid_t pid;
+	int status;
 
-	(void)pid;
 	if (command[0] == '/')
-		execute_external_command(command);
+	{
+		args[0] = command;
+		args[1] = NULL;
+		execve(command, args, NULL);
+		perror(command);
+		exit(EXIT_FAILURE);
+	}
 	else
 	{
-		full_path_size = _strlen(path) + _strlen(command) + 2;
-		full_path = (char *)malloc(full_path_size);
-		if (full_path == NULL)
+		pid_t pid = fork();
+
+		if (pid < 0)
 		{
-			perror("malloc");
+			_puts("Fork error\n");
+		}
+		else if (pid == 0)
+		{
+			full_path_size = _strlen(path) + _strlen(command) + 2;
+			full_path = (char *)malloc(full_path_size);
+			_strcpy(full_path, path);
+			_strcat(full_path, "/");
+			_strcat(full_path, command);
+			args[0] = command;
+			args[1] = NULL;
+			execve(full_path, args, NULL);
+			free(full_path);
+			/*_puts(command);*/
+			/*_puts(": command not found\n");*/
+			_puts("./shell: No such file or directory\n");
 			exit(EXIT_FAILURE);
 		}
-		_strcpy(full_path, path);
-		_strcat(full_path, "/");
-		_strcat(full_path, command);
-		execute_external_command(full_path);
-		free(full_path);
+		else
+			waitpid(pid, &status, 0);
 	}
 }
 
@@ -102,7 +95,6 @@ int main(void)
 			_putchar('\n');
 			break;
 		}
-		command[bytesRead] = '\0';
 		token = strtok(command, "\n");
 		while (token != NULL)
 		{
@@ -117,4 +109,3 @@ int main(void)
 	}
 	return (0);
 }
-
