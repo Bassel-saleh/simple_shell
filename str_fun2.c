@@ -1,104 +1,87 @@
 #include "shell.h"
-/**
- * _strncpy - copying characters from one string to another
- * @dest: is the destination
- * @src: is the string to be copied
- * @n: is the maximum number of bytes to be copied
- * Return: void
- */
-char *_strncpy(char *dest, char *src, int n)
-{
-	int i, h;
 
-	h = 0;
-	while (dest[h] != '\0')
-	{
-		h++;
-	}
-	i = 0;
-	while (src[i] != '\0' && i < n)
+/**
+ * _strcpy - copies a string
+ * @dest: the destination
+ * @src: the source
+ *
+ * Return: pointer to destination
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int i = 0;
+
+	if (dest == src || src == 0)
+		return (dest);
+	while (src[i])
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-
+	dest[i] = 0;
 	return (dest);
 }
 
 /**
- * _strncat - append src string to dest string
- * @src: is the string to be appended onto dest
- * @dest: is the string appended on
- * @n: is the number of characters to be appended
- * Return: void
+ * _strdup - duplicates a string
+ * @str: the string to duplicate
+ *
+ * Return: pointer to the duplicated string
  */
-char *_strncat(char *dest, char *src, int n)
+char *_strdup(const char *str)
 {
-	int i, h;
+	int length = 0;
+	char *ret;
 
-	h = 0;
-	i = 0;
-	while (dest[i] != '\0')
-	{
-		i++;
-		h++;
-	}
-	for (i = 0; src[i] != '\0' && i < n; i++)
-	{
-		dest[i + h] = src[i];
-	}
-	dest[i + h] = '\0';
-	return (dest);
+	if (str == NULL)
+		return (NULL);
+	while (*str++)
+		length++;
+	ret = malloc(sizeof(char) * (length + 1));
+	if (!ret)
+		return (NULL);
+	for (length++; length--;)
+		ret[length] = *--str;
+	return (ret);
 }
 
 /**
- * _strchr - locates a character in a string
- * @s: the string to be checked
- * @c: the character being located
- * Return: if c is located return c else return null
+ *_puts - prints an input string
+ *@str: the string to be printed
+ *
+ * Return: Nothing
  */
-char *_strchr(char *s, char c)
-{
-	while (*s != '\0')
-	{
-		s++;
-		if (*s == c)
-		{
-			return (s);
-		}
-	}
-	return (0);
-}
-
-/**
- * _putchar - print char
- * @c: the character to be printed
- * Return: the character
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
- * _puts - prints any string
- * @s: the string to be printed
- * Return: VOID
- */
-void _puts(char *s)
+void _puts(char *str)
 {
 	int i = 0;
 
-	if (!s)
+	if (!str)
 		return;
-	while (s[i] != '\0')
+	while (str[i] != '\0')
 	{
-		_putchar(s[i]);
+		_putchar(str[i]);
 		i++;
 	}
+}
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
+
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	{
+		write(1, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
 }
